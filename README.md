@@ -1,9 +1,9 @@
 # 台股與美股每日分析系統
 
-[![Tests](https://github.com/AlexOu11/aa/actions/workflows/test.yml/badge.svg)](https://github.com/AlexOu11/aa/actions/workflows/test.yml)
-[![Daily stock report](https://github.com/AlexOu11/aa/actions/workflows/daily-report.yml/badge.svg)](https://github.com/AlexOu11/aa/actions/workflows/daily-report.yml)
+[![Tests](https://github.com/AlexOu11/stock/actions/workflows/test.yml/badge.svg)](https://github.com/AlexOu11/stock/actions/workflows/test.yml)
+[![Daily stock report](https://github.com/AlexOu11/stock/actions/workflows/daily-report.yml/badge.svg)](https://github.com/AlexOu11/stock/actions/workflows/daily-report.yml)
 
-**[開啟每日報告與執行紀錄](https://github.com/AlexOu11/aa/actions/workflows/daily-report.yml)**：點選最新完成的執行，即可在 Summary 閱讀報告，或從 Artifacts 下載 Markdown／JSON。
+**[開啟每日報告與執行紀錄](https://github.com/AlexOu11/stock/actions/workflows/daily-report.yml)**：點選最新完成的執行，即可在 Summary 閱讀報告，或從 Artifacts 下載 Markdown／JSON。
 
 Python 3.12 標準函式庫實作，不需要 Colab、額外 Python 套件或常駐伺服器。
 Windows 另需時區資料 `tzdata`，一鍵安裝程式會在缺少時自動安裝。
