@@ -1,0 +1,7 @@
+{
+  "stocks": ["2330.TW", "0050.TW", "AAPL", "MSFT"],
+  "timezone": "Asia/Taipei",
+  "ai_provider": "none",
+  "ai_model": "gpt-4.1-mini",
+  "max_data_age_days": 7
+}
