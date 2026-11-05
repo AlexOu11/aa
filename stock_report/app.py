@@ -15,6 +15,8 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .market import analyze, demo_stock, fetch_stock, get_json
+from .report_html import render_html
+from .storage import atomic_write
 
 PROVIDERS = {
     "openai": ("https://api.openai.com/v1/chat/completions", "OPENAI_API_KEY"),
@@ -149,9 +151,11 @@ def run(args):
     report = render_report(now, results, failures, summary, args.demo)
     output = Path(args.output or ("reports/demo" if args.demo else "reports"))
     output.mkdir(parents=True, exist_ok=True)
-    (output / "report.md").write_text(report, encoding="utf-8")
-    (output / "report.json").write_text(json.dumps({"generated_at": now.isoformat(), "demo": args.demo,
-        "stocks": results, "failures": failures, "ai_degraded": degraded, "summary": summary}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    data = {"generated_at": now.isoformat(), "demo": args.demo,
+            "stocks": results, "failures": failures, "ai_degraded": degraded, "summary": summary}
+    atomic_write(output / "report.md", report)
+    atomic_write(output / "report.html", render_html(data))
+    atomic_write(output / "report.json", json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print(f"已產生報告：成功 {len(results)} 支，失敗 {len(failures)} 支；AI 降級：{degraded}")
     if settings:
         send_email(settings, report, f"{'【部分資料缺漏】' if failures or degraded else ''}每日股票分析 {now:%Y-%m-%d}")
